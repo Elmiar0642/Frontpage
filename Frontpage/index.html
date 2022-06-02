@@ -196,14 +196,19 @@
 			function updateClock() {
 				var days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
 				var m = new Date();
+				var ist = new Date(m.getTime());
+				ist.setHours(ist.getHours()+5);
+				ist.setMinutes(ist.getMinutes()+30);
 				var dateString =
-				(days[ m.getDay() ]) + " " +
-				("0" + m.getDate()).slice(-2) + "/" +
-				("0" + (m.getMonth()+1)).slice(-2) +"/"+
-				m.getFullYear() +" "+
-				("0" + m.getHours()).slice(-2) + ":" +
-				("0" + m.getMinutes()).slice(-2) + ":" +
-				("0" + m.getSeconds()).slice(-2);
+				(days[ m.getUTCDay() ]) + " " +
+				("0" + m.getUTCDate()).slice(-2) + "/" +
+				("0" + (m.getUTCMonth()+1)).slice(-2) +"/"+
+				m.getUTCFullYear() +" "+
+				//("0" + m.getUTCHours()).slice(-2) + ":" +
+				//("0" + m.getUTCMinutes()).slice(-2) + ":" +
+				("0" + ist.getHours()).slice(-2) + ":" +
+				("0" + ist.getMinutes()).slice(-2) + ":" +
+				("0" + m.getUTCSeconds()).slice(-2);
 
 				// set the content of the element with the ID codes to the formatted string
 				document.getElementById('codes').innerHTML = dateString;
